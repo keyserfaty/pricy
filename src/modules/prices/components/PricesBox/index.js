@@ -23,7 +23,10 @@ const PricesBox = props => {
             <th><FontAwesome name='trash-o' /></th>
           </tr>
           <tr>
-            <td style={{ textAlign: 'left' }}>John</td>
+            <td style={{ textAlign: 'left' }}>
+              <div className="input-sign">$</div>
+              <input className="input" type="text"/>
+            </td>
             <td>Doe</td>
             <td>John</td>
             <td>
