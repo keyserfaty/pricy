@@ -32,6 +32,9 @@ const PricesBox = props => {
               </button>
             </td>
           </tr>
+          <tr className="last">
+            <td style={{ textAlign: 'left' }}>🛒 Cantidad: # 15</td>
+          </tr>
         </table>
       </section>
 
