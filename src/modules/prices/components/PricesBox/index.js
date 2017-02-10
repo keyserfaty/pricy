@@ -9,7 +9,7 @@ const PricesBox = props => {
       <section className="header">
         <h3>Lista de precios</h3>
         <button className="box-add-button">
-          <FontAwesome style={{ marginRight: '10px' }} name='cog' />
+          <FontAwesome style={{ marginRight: '10px' }} name='plus' />
           Agregar nuevo
         </button>
       </section>
@@ -20,7 +20,7 @@ const PricesBox = props => {
             <th style={{ textAlign: 'left' }}>Precio efectivo</th>
             <th>Precio tarjeta</th>
             <th>Precio tarjeta c/interés</th>
-            <th><FontAwesome name='cog' /></th>
+            <th><FontAwesome name='trash-o' /></th>
           </tr>
           <tr>
             <td style={{ textAlign: 'left' }}>John</td>
@@ -28,7 +28,7 @@ const PricesBox = props => {
             <td>John</td>
             <td>
               <button className="box-remove-button" >
-                <FontAwesome name='cog' />
+                <FontAwesome name='trash-o' />
               </button>
             </td>
           </tr>
