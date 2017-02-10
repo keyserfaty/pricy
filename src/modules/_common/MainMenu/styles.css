@@ -1,0 +1,15 @@
+header {
+    margin-bottom: 65px;
+}
+
+h1 {
+    text-transform: uppercase;
+    color: #5C5C5C;
+    display: inline;
+}
+
+.icon {
+    color: #5C5C5C;
+    font-size: 20px;
+    float: right;
+}

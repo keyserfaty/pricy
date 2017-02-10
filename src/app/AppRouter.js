@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, IndexRoute, IndexRedirect } from 'react-router';
-import LayoutContainer from '../modules/_common/MainLayout';
+import LayoutContainer from '../modules/_common/MainLayout/';
 
 import prices from '../modules/prices';
 
