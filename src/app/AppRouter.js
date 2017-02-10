@@ -9,11 +9,8 @@ const routes = (
     <Route component={LayoutContainer}>
       <IndexRedirect to='prices' />
       <Route path='prices'>
-        {/*<IndexRoute component={prices.scenes.list} />*/}
-        {/*<Route path='list' component={prices.scenes.list} />*/}
-        {/*<Route path='create' component={prices.scenes.create} />*/}
+        <IndexRoute component={prices.scenes.list} />
       </Route>
-
     </Route>
   </Route>
 );

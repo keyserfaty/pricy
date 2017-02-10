@@ -10,7 +10,11 @@ body {
   background-color: #6EA5F1;
 }
 
+h1, h2, h3 {
+  margin: 0;
+  display: inline;
+}
+
 h1 {
   font-family: 'Axis', sans-serif;
-  margin: 0;
 }

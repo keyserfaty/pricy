@@ -17,6 +17,8 @@ const MainLayout = props => {
           Esta aplicación ayuda a generar automáticamente los dos últimos precios y a imprimir las etiquetas.
         `}
       />
+
+      {props.children}
     </section>
   )
 };
