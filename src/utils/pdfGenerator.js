@@ -3,7 +3,10 @@ import './libs/vfs_fonts';
 
 import { pipe } from 'ramda';
 
-//* Helper functions
+/**
+ * Generates an array with content of one price label
+ * @param item
+ */
 const generateText = item => [{
   text: `Contado: 
          $ ${item.price}
@@ -27,6 +30,15 @@ const generateText = item => [{
   fontSize: 9,
   alignment: 'center'
 }];
+
+/**
+ * Generates an array of text labels
+ * @param items
+ */
+const generateArray = items => items.reduce((res, item) => {
+  res.push(generateText(item));
+  return res;
+}, []);
 
 /**
  * Generates an array of array every three elements
@@ -53,12 +65,11 @@ const pdfGenerator = list => {
     }]
   };
 
-  const parseContent = items => items.reduce((res, item) => {
-    res.push(generateText(item));
-    return res;
-  }, []);
+  docDefinition.content[0].table.body = pipe(
+    generateArray,
+    generateArrayGroups
+  )(list);
 
-  docDefinition.content[0].table.body = pipe(parseContent, generateArrayGroups)(list);
   return pdfMake.createPdf(docDefinition).open();
 };
 
