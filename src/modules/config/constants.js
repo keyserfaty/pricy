@@ -1,1 +1,1 @@
-export const NAMESPACE = 'prices';
+export const NAMESPACE = 'config';

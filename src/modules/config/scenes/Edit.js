@@ -12,6 +12,11 @@ import * as actions from '../actions';
 import { withHooks } from '../../../utils/withHooks';
 
 const Edit = props => {
+  const {
+    interest,
+    handleInterestChange
+  } = props;
+
   return (
     <PricesBox
       title='Configuración'
@@ -19,17 +24,17 @@ const Edit = props => {
       <div className='config-price-container'>
         <div className='config-price-label'>Interés en 3 cuotas</div>
         <InputSign
-          sign='$'
-          value={0}
-          onChange={() => {}}
+          sign='%'
+          value={interest.due3}
+          onChange={(e) => handleInterestChange({ due: 'due3', value: e.target.value })}
         />
       </div>
       <div className='config-price-container'>
-        <div className='config-price-label'>Interés en 3 cuotas</div>
+        <div className='config-price-label'>Interés en 12 cuotas</div>
         <InputSign
-          sign='$'
-          value={0}
-          onChange={() => {}}
+          sign='%'
+          value={interest.due12}
+          onChange={(e) => handleInterestChange({ due: 'due12', value: e.target.value })}
         />
       </div>
 
@@ -55,9 +60,11 @@ const Edit = props => {
 
 
 const mapStateToProps = state => ({
+  interest: state.config.interest
 });
 
 const mapDispatchToProps = dispatch => ({
+  handleInterestChange: (interest) => dispatch(actions.onChangeInterest({ ...interest }))
 });
 
 export default connect(
