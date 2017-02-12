@@ -6,5 +6,6 @@ import { NAMESPACE } from './constants';
 export const onChangePrice = makeActionCreator(NAMESPACE + '/onChangePrice');
 export const addPrice = makeActionCreator(NAMESPACE + '/addPrice');
 export const removePrice = makeActionCreator(NAMESPACE + '/removePrice');
+export const startPrint = makeActionCreator(NAMESPACE + '/startPrint');
 
 export const cleanState = makeActionCreator(NAMESPACE + '/cleanState');

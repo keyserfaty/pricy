@@ -20,8 +20,8 @@ const PriceSingle = props => {
           type="number"
         />
       </td>
-      <td>{item.priceCard}</td>
-      <td>{item.priceCardInterest}</td>
+      <td>$ {item.priceCard}</td>
+      <td>$ {item.priceCardInterest}</td>
       <td>
         <button className="box-remove-button" onClick={() => handleRemovePrice({ id })}>
           <FontAwesome name='trash-o' />

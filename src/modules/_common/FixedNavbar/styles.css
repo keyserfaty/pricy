@@ -1,0 +1,47 @@
+#navbar {
+    font-family: 'Avenir', sans-serif;
+    color: #5C5C5C;
+    border-top: 1px solid #F4F6F9;
+    background-color: white;
+    height: 70px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+#navbar .creator {
+    font-size: 14px;
+    position: absolute;
+    padding-top: 20px;
+    padding-left: 30px;
+}
+
+#navbar .creator a {
+    text-decoration: none;
+    color: #5C5C5C;
+    cursor: pointer;
+}
+
+#navbar .print-container {
+    position: absolute;
+    right: -1px;
+}
+
+#navbar .print-container button {
+    margin-top: 15px;
+    margin-right: 15px;
+    height: 40px;
+    width: 180px;
+    margin-left: 35px;
+    border-radius: 4px;
+    border: none;
+    background: linear-gradient(#6EF1BB 66%, #54E08D);
+    font-size: 15px;
+    font-family: 'Avenir', sans-serif;
+    color: #4E4E4E;
+    cursor: pointer;
+}
+
+#navbar .print-container button:focus {
+    outline: none;
+}
