@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles.css';
 
+import ButtonIcon from '../../../_common/ButtonIcon/';
 import FontAwesome from 'react-fontawesome';
 import PricesSingle from '../PriceSingle/';
 
@@ -8,16 +9,18 @@ const PricesBox = props => {
   const { list, handleAddNewPrice, handleOnChangePrice, handleRemovePrice } = props;
 
   return (
-    <div className="box">
-      <section className="header">
+    <div className='box'>
+      <section className='header'>
         <h3>Lista de precios</h3>
-        <button className="box-add-button" onClick={handleAddNewPrice}>
-          <FontAwesome style={{ marginRight: '10px' }} name='plus' />
-          Agregar nuevo
-        </button>
+        <ButtonIcon
+          icon='plus'
+          label='Agregar nuevo'
+          className='box-add-button'
+          onClick={handleAddNewPrice}
+        />
       </section>
 
-      <section className="table">
+      <section className='table'>
         <table>
           <tr>
             <th style={{ textAlign: 'left' }}>Precio efectivo</th>
@@ -35,7 +38,7 @@ const PricesBox = props => {
             />
           )}
 
-          <tr className="last">
+          <tr className='last'>
             <td style={{ textAlign: 'left' }}>🛒 Cantidad: # {list.length}</td>
           </tr>
         </table>

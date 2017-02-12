@@ -1,5 +1,7 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
+
+import InputSign from '../../../_common/InputSign/';
+import ButtonIcon from '../../../_common/ButtonIcon/';
 
 const PriceSingle = props => {
   const {
@@ -12,20 +14,19 @@ const PriceSingle = props => {
   return (
     <tr key={id}>
       <td style={{ textAlign: 'left' }}>
-        <div className="input-sign">$</div>
-        <input
+        <InputSign
           value={item.price}
           onChange={(e) => handleOnChangePrice({ id, price: e.target.value })}
-          className="input"
-          type="number"
         />
       </td>
       <td>$ {item.priceCard}</td>
       <td>$ {item.priceCardInterest}</td>
       <td>
-        <button className="box-remove-button" onClick={() => handleRemovePrice({ id })}>
-          <FontAwesome name='trash-o' />
-        </button>
+        <ButtonIcon
+          className="box-remove-button"
+          onClick={() => handleRemovePrice({ id })}
+          icon='trash-o'
+        />
       </td>
     </tr>
   );

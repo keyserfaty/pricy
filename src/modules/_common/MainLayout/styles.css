@@ -6,3 +6,15 @@
     padding: 45px 80px;
     box-sizing: border-box;
 }
+
+@media (max-width: 1400px) {
+    #container {
+        width: 80%;
+    }
+}
+
+@media (max-width: 800px) {
+    #container {
+        width: 95%;
+    }
+}
