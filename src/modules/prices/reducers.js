@@ -45,7 +45,7 @@ const reducer = handleActions({
     ...state,
     list: [
       ...state.list
-        .filter((price, i) => i !== action.payload.item)
+        .filter((price, i) => i !== action.payload.id)
     ]
   }),
 

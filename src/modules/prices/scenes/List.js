@@ -21,7 +21,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   handleAddNewPrice: () => dispatch(actions.addPrice()),
-  handleRemovePrice: () => dispatch(actions.removePrice()),
+  handleRemovePrice: (prices) => dispatch(actions.removePrice({ ...prices })),
   handleOnChangePrice: (prices) => dispatch(actions.onChangePrice({ ...prices }))
 });
 

@@ -5,7 +5,7 @@ import FontAwesome from 'react-fontawesome';
 import PricesSingle from '../PriceSingle/';
 
 const PricesBox = props => {
-  const { list, handleAddNewPrice, handleOnChangePrice } = props;
+  const { list, handleAddNewPrice, handleOnChangePrice, handleRemovePrice } = props;
 
   return (
     <div className="box">
@@ -31,11 +31,12 @@ const PricesBox = props => {
               id={i}
               item={item}
               handleOnChangePrice={handleOnChangePrice}
+              handleRemovePrice={handleRemovePrice}
             />
           )}
 
           <tr className="last">
-            <td style={{ textAlign: 'left' }}>🛒 Cantidad: # 15</td>
+            <td style={{ textAlign: 'left' }}>🛒 Cantidad: # {list.length}</td>
           </tr>
         </table>
       </section>

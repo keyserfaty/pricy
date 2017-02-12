@@ -5,7 +5,8 @@ const PriceSingle = props => {
   const {
     id,
     item,
-    handleOnChangePrice
+    handleOnChangePrice,
+    handleRemovePrice
   } = props;
 
   return (
@@ -22,7 +23,7 @@ const PriceSingle = props => {
       <td>{item.priceCard}</td>
       <td>{item.priceCardInterest}</td>
       <td>
-        <button className="box-remove-button" >
+        <button className="box-remove-button" onClick={() => handleRemovePrice({ id })}>
           <FontAwesome name='trash-o' />
         </button>
       </td>
