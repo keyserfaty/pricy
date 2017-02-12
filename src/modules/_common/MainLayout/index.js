@@ -18,7 +18,7 @@ const MainLayout = props => {
           text={`
             ¿Qué es esto? Es una aplicación para imprimir etiquetas de precios en tandas.
             Por disposición del Gobierno argentino los locales desde 2017 tienen que mostrar
-            a sus clientes los precios en tres formatos: efectivo, tarjeta e  interés.
+            a sus clientes los precios en tres formatos: efectivo, interés en 3 cuotas e interés en 12 cuotas.
             Esta aplicación ayuda a generar automáticamente los dos últimos precios y a imprimir las etiquetas.
           `}
         />

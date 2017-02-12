@@ -21,8 +21,8 @@ const PricesBox = props => {
         <table>
           <tr>
             <th style={{ textAlign: 'left' }}>Precio efectivo</th>
-            <th>Precio tarjeta</th>
-            <th>Precio tarjeta c/interés</th>
+            <th>Precio 3 cuotas</th>
+            <th>Precio 12 cuotas</th>
             <th><FontAwesome name='trash-o' /></th>
           </tr>
 
