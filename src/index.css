@@ -18,3 +18,11 @@ h1, h2, h3 {
 h1 {
   font-family: 'Axis', sans-serif;
 }
+
+button {
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}

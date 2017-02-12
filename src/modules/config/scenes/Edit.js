@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import './styles.css';
 
 import PricesBox from '../../_common/PricesBox/'
@@ -14,7 +15,6 @@ const Edit = props => {
   return (
     <PricesBox
       title='Configuración'
-
     >
       <div className='config-price-container'>
         <div className='config-price-label'>Interés en 3 cuotas</div>
@@ -34,11 +34,13 @@ const Edit = props => {
       </div>
 
       <div className='config-price-footer'>
-        <ButtonIcon
-          icon='times'
-          type='secondary'
-          label='Cancelar'
-        />
+        <Link to='prices'>
+          <ButtonIcon
+            icon='times'
+            type='secondary'
+            label='Cancelar'
+          />
+        </Link>
 
         <ButtonIcon
           style={{ marginLeft: '20px' }}

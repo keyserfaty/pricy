@@ -2,18 +2,11 @@
 .button-primary,
 .button-secondary {
     border-radius: 4px;
-    cursor: pointer;
     font-family: 'Avenir', sans-serif;
     font-size: 16px;
     font-weight: 200;
     height: 40px;
     padding: 0 15px;
-}
-
-.button-success:focus,
-.button-primary:focus,
-.button-secondary:focus {
-    outline: none;
 }
 
 .button-success {

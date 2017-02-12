@@ -6,7 +6,7 @@ import configureStore from './app/configureStore';
 import './index.css';
 
 //* Libs
-import 'sweetalert/dist/sweetalert.css';
+import 'animate.css/animate.css';
 
 import RootComponent from './app/Root';
 

@@ -8,7 +8,7 @@ const PricesBox = props => {
   } = props;
 
   return (
-    <div className='box'>
+    <div className='box animated fadeIn' style={{ animationDuration: '0.5s' }}>
       <section className='box-header'>
         <h3>{title}</h3>
         <span className='box-right'>

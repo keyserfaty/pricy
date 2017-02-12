@@ -12,7 +12,7 @@ const PriceSingle = props => {
   } = props;
 
   return (
-    <tr key={id}>
+    <tr key={id} className='animated fadeIn' style={{ animationDuration: '0.5s' }}>
       <td style={{ textAlign: 'left' }}>
         <InputSign
           sign='$'
