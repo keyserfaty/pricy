@@ -4,20 +4,26 @@ import { connect } from 'react-redux';
 import PricesBoxContainer from '../components/PricesBox/'
 
 // import * as selectors from '../selectors';
-// import * as actions from '../actions';
+import * as actions from '../actions';
 
 import { withHooks } from '../../../utils/withHooks';
 
 const List = props => {
   return (
-    <PricesBoxContainer />
+    <PricesBoxContainer {...props} />
   );
 };
 
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  list: state.prices.list
+});
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  handleAddNewPrice: () => dispatch(actions.addPrice()),
+  handleRemovePrice: () => dispatch(actions.removePrice()),
+  handleOnChangePrice: (prices) => dispatch(actions.onChangePrice({ ...prices }))
+});
 
 export default connect(
   mapStateToProps,

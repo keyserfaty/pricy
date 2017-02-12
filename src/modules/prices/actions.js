@@ -2,9 +2,9 @@ import makeActionCreator from 'make-action-creator';
 
 import { NAMESPACE } from './constants';
 
-export const create = makeActionCreator(NAMESPACE + '/create', {rrSpinner: true});
-
 //* ui
-export const onChange = makeActionCreator(NAMESPACE + '/onChange');
+export const onChangePrice = makeActionCreator(NAMESPACE + '/onChangePrice');
+export const addPrice = makeActionCreator(NAMESPACE + '/addPrice');
+export const removePrice = makeActionCreator(NAMESPACE + '/removePrice');
 
 export const cleanState = makeActionCreator(NAMESPACE + '/cleanState');

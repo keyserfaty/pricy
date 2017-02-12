@@ -1,1 +1,1 @@
-export const NAMESPACE = 'stock';
+export const NAMESPACE = 'prices';

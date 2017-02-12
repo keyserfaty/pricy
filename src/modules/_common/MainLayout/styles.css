@@ -2,7 +2,7 @@
     width: 60%;
     background: linear-gradient(#fff 44%, #f7f7f7);;
     margin: 0 auto;
-    height: 100vh;
+    min-height: 100vh;
     padding: 45px 80px;
     box-sizing: border-box;
 }

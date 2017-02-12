@@ -3,14 +3,21 @@ import FontAwesome from 'react-fontawesome';
 
 const PriceSingle = props => {
   const {
-    item
+    id,
+    item,
+    handleOnChangePrice
   } = props;
 
   return (
-    <tr>
+    <tr key={id}>
       <td style={{ textAlign: 'left' }}>
         <div className="input-sign">$</div>
-        <input className="input" type="text"/>
+        <input
+          value={item.price}
+          onChange={(e) => handleOnChangePrice({ id, price: e.target.value })}
+          className="input"
+          type="number"
+        />
       </td>
       <td>{item.priceCard}</td>
       <td>{item.priceCardInterest}</td>

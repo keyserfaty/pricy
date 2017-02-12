@@ -4,49 +4,8 @@ import './styles.css';
 import FontAwesome from 'react-fontawesome';
 import PricesSingle from '../PriceSingle/';
 
-class PricesBoxContainer extends React.Component {
-  singlePrice = {
-    price: 0,
-    priceCard: 0,
-    priceCardInterest: 0
-  };
-
-  constructor (props) {
-    super(props);
-    this.state = {
-      list: [
-        this.singlePrice
-      ]
-    };
-  }
-
-  handleAddNewPrice () {
-    this.setState({
-      list: [
-        ...this.state.list,
-        this.singlePrice
-      ]
-    });
-  }
-
-  handleRemoveSinglePrice (item) {}
-
-  handlePriceOnChange (e) {
-    
-  }
-
-  render () {
-    const { list } = this.state;
-    return (
-      <span>
-        <PricesBox handleAddNewPrice={() => this.handleAddNewPrice()} list={list} />
-      </span>
-    )
-  }
-}
-
 const PricesBox = props => {
-  const { list, handleAddNewPrice } = props;
+  const { list, handleAddNewPrice, handleOnChangePrice } = props;
 
   return (
     <div className="box">
@@ -67,7 +26,13 @@ const PricesBox = props => {
             <th><FontAwesome name='trash-o' /></th>
           </tr>
 
-          { list.map((item, i) => <PricesSingle key={i} item={item} />) }
+          { list.map((item, i) =>
+            <PricesSingle
+              id={i}
+              item={item}
+              handleOnChangePrice={handleOnChangePrice}
+            />
+          )}
 
           <tr className="last">
             <td style={{ textAlign: 'left' }}>🛒 Cantidad: # 15</td>
@@ -79,4 +44,4 @@ const PricesBox = props => {
   );
 };
 
-export default PricesBoxContainer;
+export default PricesBox;
