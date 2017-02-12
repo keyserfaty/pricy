@@ -13,4 +13,6 @@
 
 .config-price-footer {
     clear: both;
+    padding-top: 35px;
+    padding-bottom: 32px;
 }
