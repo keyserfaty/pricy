@@ -1,36 +1,51 @@
 import pdfMake from '../../node_modules/pdfmake/build/pdfmake.min.js';
 import './libs/vfs_fonts';
 
-//* Generates a PDF file with the barcodes images
+//* Generates a PDF file
 const pdfGenerator = list => {
   let docDefinition = {
-    content: []
+    content: [{
+      table: {
+        widths: [150, 150, 150],
+        body: []
+      }
+    }]
   };
 
-  // TODO: this needs some work on styles
   const parseContent = items => items.reduce((res, item) => {
-    const elem = {
+    const elem = [{
+      text: `Contado: 
+         $ ${item.price}
+        `,
+      alignment: 'center',
+      fontSize: 18
+    }, {
+      text: `3 cuotas de: $ ${item.priceCard}`,
+      alignment: 'center'
+    }, {
+      text: 'TASA DE INTERES 10%',
+      fontSize: 9,
+      alignment: 'center'
+    }, {
       text: `
-       Contado: 
-       $ ${item.price}
-       
-       3 cuotas de: $ ${item.priceCard}
-       TASA DE INTERES 10%
-       
-       12 cuotas de: $ ${item.priceCardInterest}
-       con Ahora 12
-       TASA DE INTERES 20%
-      `
-    };
+      12 cuotas de: $ ${item.priceCardInterest}
+      con Ahora 12`,
+      alignment: 'center'
+    }, {
+      text: 'TASA DE INTERES 20%',
+      fontSize: 9,
+      alignment: 'center'
+    }];
 
     res.push(elem);
     return res;
   }, []);
-
+  
   parseContent(list).map(item =>
-    docDefinition.content.push(item)
+    docDefinition.content[0].table.body.push(item)
   );
 
+  console.log(JSON.stringify(docDefinition, null, 4))
 
   return pdfMake.createPdf(docDefinition).open();
 };
