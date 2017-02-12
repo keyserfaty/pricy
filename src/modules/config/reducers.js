@@ -7,20 +7,43 @@ const initialState = {
   interest: {
     due3: 10,
     due12: 20
+  },
+  ui: {
+    interest: {}
   }
 };
 
 const reducer = handleActions({
   [actions.onChangeInterest.type]: (state, action) => ({
     ...state,
-    interest: {
-      ...state.interest,
-      [action.payload.due]: Number(action.payload.value)
+    ui: {
+      ...state.ui,
+      interest: {
+        ...state.ui.interest,
+        [action.payload.due]: Number(action.payload.value)
+      }
     }
   }),
 
-  [actions.cleanState.type]: (state, action) =>
-    initialState
+  [actions.onMount.type]: (state, action) => ({
+    ...state,
+    ui: {
+      ...state.ui,
+      interest: state.interest
+    }
+  }),
+
+  [actions.saveChanges.type]: (state, action) => ({
+    ...state,
+    interest: state.ui.interest
+  }),
+
+  [actions.cleanState.type]: (state, action) => ({
+    ...state,
+    ui: {
+      interest: {}
+    }
+  })
 
 }, initialState);
 
