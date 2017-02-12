@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './styles.css';
 
-import * as actions from '../../prices/actions';
-
 import MainMenu from '../MainMenu/';
 import FixedNavbar from '../FixedNavbar/';
 import Alert from '../Alert';
+
+import pdfGenerator from '../../../utils/pdfGenerator';
 
 const MainLayout = props => {
   return (
@@ -35,7 +35,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  handlePrint: () => dispatch(actions.startPrint())
+  handlePrint: list => pdfGenerator(list)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainLayout);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MainLayout);

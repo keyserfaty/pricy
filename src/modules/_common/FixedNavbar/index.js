@@ -14,7 +14,7 @@ const FixedNavbar = props => {
         <span className="print-quantity">
           🛒 Cantidad: # {list.length}
         </span>
-        <button className="print-button" onClick={handlePrint}>
+        <button className="print-button" onClick={() => handlePrint(list)}>
           <FontAwesome style={{ marginRight: '10px' }} name='print' />
           Imprimir etiquetas
         </button>

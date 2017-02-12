@@ -7,7 +7,6 @@
     "react-scripts": "0.8.4"
   },
   "dependencies": {
-    "jsbarcode": "^3.5.7",
     "make-action-creator": "^0.3.3",
     "moment": "^2.17.1",
     "pdfmake": "github:danishin/pdfmake",
