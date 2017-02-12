@@ -44,7 +44,7 @@ const Edit = props => {
 
         <ButtonIcon
           style={{ marginLeft: '20px' }}
-          icon='times'
+          icon='floppy-o'
           type='primary'
           label='Guardar cambios'
         />
