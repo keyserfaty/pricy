@@ -8,7 +8,7 @@ const FixedNavbar = props => {
   return (
     <div id="navbar">
       <span className="creator">
-        Creado con ❤️ por <a href="http://www.twiter.com/keyserfaty">@keyserfaty</a>
+        Creado con ❤️ por <a href="https://twitter.com/keyserfaty">@keyserfaty</a>
       </span>
       <span className="print-container">
         <span className="print-quantity">
