@@ -2,8 +2,8 @@
     display: inline;
     background: #F4F6F9;
     border: 1px solid #6EA5F1;
-    padding: 5px 12px;
-    border-radius: 3px;
+    padding: 5px 13px 5px 13px;
+    border-radius: 3px 0 0 3px;
     color: #6EA5F1;
     font-size: 14px;
 }
@@ -11,7 +11,7 @@
 .input {
     height: 27px;
     border: 1px solid #6EA5F1;
-    margin-left: -2px;
+    margin-left: -3px;
     border-radius: 2px;
     padding-left: 10px;
 }

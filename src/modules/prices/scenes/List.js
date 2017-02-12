@@ -1,16 +1,56 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import FontAwesome from 'react-fontawesome';
 
-import PricesBoxContainer from '../components/PricesBox/'
+import './styles.css';
 
-// import * as selectors from '../selectors';
+import PricesSingle from '../components/PriceSingle/';
+import PricesBox from '../../_common/PricesBox/'
+import ButtonIcon from '../../_common/ButtonIcon/';
+
 import * as actions from '../actions';
 
 import { withHooks } from '../../../utils/withHooks';
 
 const List = props => {
+  const { list, handleAddNewPrice, handleOnChangePrice, handleRemovePrice } = props;
+
   return (
-    <PricesBoxContainer {...props} />
+    <PricesBox
+      title='Lista de precios'
+      button={
+        <ButtonIcon
+          icon='plus'
+          type='primary'
+          label='Agregar nuevo'
+          onClick={handleAddNewPrice}
+        />
+      }
+    >
+      <section className='table'>
+        <table>
+          <tr>
+            <th style={{ textAlign: 'left' }}>Precio efectivo</th>
+            <th>Precio 3 cuotas</th>
+            <th>Precio 12 cuotas</th>
+            <th><FontAwesome name='trash-o' /></th>
+          </tr>
+
+          { list.map((item, i) =>
+            <PricesSingle
+              id={i}
+              item={item}
+              handleOnChangePrice={handleOnChangePrice}
+              handleRemovePrice={handleRemovePrice}
+            />
+          )}
+
+          <tr className='last'>
+            <td style={{ textAlign: 'left' }}>🛒 Cantidad: # {list.length}</td>
+          </tr>
+        </table>
+      </section>
+    </PricesBox>
   );
 };
 

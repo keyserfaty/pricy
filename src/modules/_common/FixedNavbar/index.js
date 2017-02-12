@@ -14,12 +14,14 @@ const FixedNavbar = props => {
         <span className='print-quantity'>
           🛒 Cantidad: # {list.length}
         </span>
-        <ButtonIcon
-          icon='print'
-          className='print-button'
-          label='Imprimir etiquetas'
-          onClick={() => handlePrint(list)}
-        />
+        <span className="print-button">
+          <ButtonIcon
+            icon='print'
+            type='success'
+            label='Imprimir etiquetas'
+            onClick={() => handlePrint(list)}
+          />
+        </span>
       </span>
     </div>
   );

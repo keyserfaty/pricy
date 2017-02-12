@@ -1,0 +1,16 @@
+.config-price-container {
+    display: inline;
+    float: left;
+    margin-right: 50px;
+}
+
+.config-price-label {
+    font-family: 'Avenir', sans-serif;
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: #5C5C5C;
+}
+
+.config-price-footer {
+    clear: both;
+}

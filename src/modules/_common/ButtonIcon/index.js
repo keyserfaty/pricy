@@ -1,16 +1,18 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import './styles.css';
 
 const ButtonIcon = props => {
   const {
-    className,
     onClick,
+    className,
     label,
-    icon
+    icon,
+    type
   } = props;
 
   return (
-    <button className={className} onClick={onClick}>
+    <button className={`button-${type} ${className}`} onClick={onClick}>
       <FontAwesome style={{ marginRight: '10px' }} name={icon} />
       {label}
     </button>

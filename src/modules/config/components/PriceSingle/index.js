@@ -15,7 +15,6 @@ const PriceSingle = props => {
     <tr key={id}>
       <td style={{ textAlign: 'left' }}>
         <InputSign
-          sign='$'
           value={item.price}
           onChange={(e) => handleOnChangePrice({ id, price: e.target.value })}
         />
