@@ -55,6 +55,25 @@ const generateArrayGroups = list => list
     return res;
   }, []);
 
+/**
+ * Add empty spaces if list is not full
+ * @param list
+ * @returns {*}
+ */
+const generateEmptySpaces = list => {
+  if (list[list.length - 1].length < 3) {
+    switch (list[list.length - 1].length) {
+      case 1:
+        list[list.length - 1].push([], []);
+        break;
+      case 2:
+        list[list.length - 1].push([]);
+        break;
+    }
+  }
+  return list;
+};
+
 //* Generates a PDF file
 const pdfGenerator = list => {
   let docDefinition = {
@@ -67,7 +86,8 @@ const pdfGenerator = list => {
 
   docDefinition.content[0].table.body = pipe(
     generateArray,
-    generateArrayGroups
+    generateArrayGroups,
+    generateEmptySpaces
   )(list);
 
   return pdfMake.createPdf(docDefinition).open();
