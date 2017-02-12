@@ -15,7 +15,7 @@ const reducer = handleActions({
     ...state,
     interest: {
       ...state.interest,
-      [action.payload.due]: action.payload.value
+      [action.payload.due]: Number(action.payload.value)
     }
   }),
 

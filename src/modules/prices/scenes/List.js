@@ -13,7 +13,7 @@ import * as actions from '../actions';
 import { withHooks } from '../../../utils/withHooks';
 
 const List = props => {
-  const { list, handleAddNewPrice, handleOnChangePrice, handleRemovePrice } = props;
+  const { list, interest, handleAddNewPrice, handleOnChangePrice, handleRemovePrice } = props;
 
   return (
     <PricesBox
@@ -31,8 +31,8 @@ const List = props => {
         <table>
           <tr>
             <th style={{ textAlign: 'left' }}>Precio efectivo</th>
-            <th>Precio 3 cuotas</th>
-            <th>Precio 12 cuotas</th>
+            <th>Precio 3 cuotas ({interest.due3}%)</th>
+            <th>Precio 12 cuotas ({interest.due12}%)</th>
             <th><FontAwesome name='trash-o' /></th>
           </tr>
 
@@ -40,6 +40,7 @@ const List = props => {
             <PricesSingle
               id={i}
               item={item}
+              interest={interest}
               handleOnChangePrice={handleOnChangePrice}
               handleRemovePrice={handleRemovePrice}
             />
@@ -56,13 +57,25 @@ const List = props => {
 
 
 const mapStateToProps = state => ({
-  list: state.prices.list
+  list: state.prices.list,
+  interest: state.config.interest
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
   handleAddNewPrice: () => dispatch(actions.addPrice()),
   handleRemovePrice: (prices) => dispatch(actions.removePrice({ ...prices })),
-  handleOnChangePrice: (prices) => dispatch(actions.onChangePrice({ ...prices }))
+  handleOnChangePrice: (prices) => {
+    const generateSinglePrice = (price, int) =>
+      Math.round(Number(price) * (int + 100)) / 100;
+
+    const pricesList = {
+      price: prices.price,
+      priceCard: generateSinglePrice(prices.price, prices.interest.due3),
+      priceCardInterest: generateSinglePrice(prices.price, prices.interest.due12)
+    };
+
+    return dispatch(actions.onChangePrice({ id: prices.id, prices: pricesList }));
+  }
 });
 
 export default connect(

@@ -18,14 +18,10 @@ const initialState = {
 const reducer = handleActions({
   [actions.onChangePrice.type]: (state, action) => {
     const list = [
-      ...state.list
+      ...state.list,
     ];
 
-    list[action.payload.id] = {
-      price: Number(action.payload.price),
-      priceCard: Math.round(Number(action.payload.price) * 1.1 * 100) / 100,
-      priceCardInterest: Math.round(Number(action.payload.price) * 1.2 * 100) / 100
-    };
+    list[action.payload.id] = action.payload.prices;
 
     return {
       ...state,
