@@ -31,11 +31,12 @@ const MainLayout = props => {
 };
 
 const mapStateToProps = state => ({
-  list: state.prices.list
+  list: state.prices.list,
+  interest: state.config.interest
 });
 
 const mapDispatchToProps = dispatch => ({
-  handlePrint: list => pdfGenerator(list)
+  handlePrint: (list, interest) => pdfGenerator(list, interest)
 });
 
 export default connect(

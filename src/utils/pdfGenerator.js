@@ -6,8 +6,9 @@ import { pipe } from 'ramda';
 /**
  * Generates an array with content of one price label
  * @param item
+ * @param interest
  */
-const generateText = item => [{
+const generateText = (item, interest) => [{
   text: `Contado: 
          $ ${item.price}
         `,
@@ -17,7 +18,7 @@ const generateText = item => [{
   text: `3 cuotas de: $ ${item.priceCard}`,
   alignment: 'center'
 }, {
-  text: 'TASA DE INTERES 10%',
+  text: `TASA DE INTERES ${interest.due3}%`,
   fontSize: 9,
   alignment: 'center'
 }, {
@@ -26,17 +27,18 @@ const generateText = item => [{
       con Ahora 12`,
   alignment: 'center'
 }, {
-  text: 'TASA DE INTERES 20%',
+  text: `TASA DE INTERES ${interest.due12}%`,
   fontSize: 9,
   alignment: 'center'
 }];
 
 /**
  * Generates an array of text labels
- * @param items
+ * @param interest
+ * @param list
  */
-const generateArray = items => items.reduce((res, item) => {
-  res.push(generateText(item));
+const generateArray = interest => list => list.reduce((res, item) => {
+  res.push(generateText(item, interest));
   return res;
 }, []);
 
@@ -75,7 +77,7 @@ const generateEmptySpaces = list => {
 };
 
 //* Generates a PDF file
-const pdfGenerator = list => {
+const pdfGenerator = (list, interest) => {
   let docDefinition = {
     content: [{
       table: {
@@ -85,7 +87,7 @@ const pdfGenerator = list => {
   };
 
   docDefinition.content[0].table.body = pipe(
-    generateArray,
+    generateArray(interest),
     generateArrayGroups,
     generateEmptySpaces
   )(list);
