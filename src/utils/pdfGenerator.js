@@ -7,7 +7,8 @@ const pdfGenerator = list => {
     content: [{
       table: {
         widths: [150, 150, 150],
-        body: []
+        // TODO: need to add empty arrays if number is not a multiple of three
+        body: [[]]
       }
     }]
   };
@@ -40,12 +41,10 @@ const pdfGenerator = list => {
     res.push(elem);
     return res;
   }, []);
-  
-  parseContent(list).map(item =>
-    docDefinition.content[0].table.body.push(item)
-  );
 
-  console.log(JSON.stringify(docDefinition, null, 4))
+  parseContent(list).map(item =>
+    docDefinition.content[0].table.body[0].push(item)
+  );
 
   return pdfMake.createPdf(docDefinition).open();
 };
