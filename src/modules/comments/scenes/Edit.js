@@ -26,10 +26,18 @@ const Edit = props => {
       <div className='comments-container'>
         <p>¿Querés sugerir una funcionalidad, te encontraste con un error o querés saludar a la creadora? Este es el lugar para dejar tu comentario.</p>
         <textarea name="comment" className='comments-input' />
+        <Link to='prices'>
+          <ButtonIcon
+            icon='times'
+            type='secondary'
+            label='Cancelar'
+          />
+        </Link>
         <ButtonIcon
           type='primary'
           label='Enviar comentario'
           icon='paper-plane'
+          style={{ marginLeft: '20px' }}
         />
       </div>
     </PricesBox>
