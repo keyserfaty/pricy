@@ -41,7 +41,9 @@ const reducer = handleActions({
       ...state.formData,
       text: ''
     }
-  })
+  }),
+
+  [actions.cleanState.type]: (state, action) => initialState
 
 }, initialState);
 

@@ -8,3 +8,4 @@ export const create = makeActionCreator(NAMESPACE + '/createComment');
 //* ui
 export const onChange = makeActionCreator(NAMESPACE + '/onChange');
 export const cleanForm = makeActionCreator(NAMESPACE + '/cleanForm');
+export const cleanState = makeActionCreator(NAMESPACE + '/cleanState');

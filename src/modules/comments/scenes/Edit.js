@@ -59,6 +59,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  onUnMount: () => dispatch(actions.cleanState()),
   handlePostComment: () => dispatch(actions.create()),
   handleOnChange: (e) => dispatch(actions.onChange({ label: e.target.name, value: e.target.value }))
 });
