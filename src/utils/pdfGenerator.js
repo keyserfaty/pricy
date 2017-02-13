@@ -15,7 +15,7 @@ const generateText = (item, interest) => [{
   alignment: 'center',
   fontSize: 18
 }, {
-  text: `3 cuotas de: $ ${item.priceCard}`,
+  text: `3 cuotas de: $ ${Math.round(item.priceCard / 3)}`,
   alignment: 'center'
 }, {
   text: `TASA DE INTERES ${interest.due3}%`,
@@ -23,7 +23,7 @@ const generateText = (item, interest) => [{
   alignment: 'center'
 }, {
   text: `
-      12 cuotas de: $ ${item.priceCardInterest}
+      12 cuotas de: $ ${Math.round(item.priceCardInterest / 12)}
       con Ahora 12`,
   alignment: 'center'
 }, {
