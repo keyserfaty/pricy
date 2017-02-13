@@ -11,6 +11,15 @@
     background-color: #FEFEED;
 }
 
+.alert-success {
+    border: 2px solid #bdf5cc;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 14px;
+    background: #e5ffec;
+    margin-bottom: 15px;
+}
+
 .alert-remove, .alert-info {
     position: absolute;
     color: #EAEAD2;

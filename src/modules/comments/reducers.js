@@ -35,10 +35,11 @@ const reducer = handleActions({
     error: action.payload.error
   }),
 
-  [actions.cleanState.type]: (state, action) => ({
+  [actions.cleanForm.type]: (state, action) => ({
     ...state,
-    ui: {
-      interest: {}
+    formData: {
+      ...state.formData,
+      text: ''
     }
   })
 

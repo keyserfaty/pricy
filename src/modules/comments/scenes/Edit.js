@@ -4,8 +4,8 @@ import { Link } from 'react-router';
 import './styles.css';
 
 import PricesBox from '../../_common/PricesBox/'
-import InputSign from '../../_common/InputSign/'
 import ButtonIcon from '../../_common/ButtonIcon/'
+import Alert from '../../_common/Alert/';
 
 import * as actions from '../actions';
 
@@ -13,6 +13,7 @@ import { withHooks } from '../../../utils/withHooks';
 
 const Edit = props => {
   const {
+    status,
     formData,
     handleOnChange,
     handlePostComment
@@ -24,6 +25,13 @@ const Edit = props => {
     >
       <div className='comments-container'>
         <p>¿Querés sugerir una funcionalidad, te encontraste con un error o querés saludar a la creadora? Este es el lugar para dejar tu comentario.</p>
+        { status === 'success' && (
+          <Alert
+            type='success'
+            display={true}
+            text='🎉 Comentario enviado. Gracias!'
+          />
+        )}
         <textarea name="text" value={formData.text} onChange={handleOnChange} className='comments-input' />
         <Link to='prices'>
           <ButtonIcon
@@ -46,6 +54,7 @@ const Edit = props => {
 
 
 const mapStateToProps = state => ({
+  status: state.comments.status,
   formData: state.comments.formData
 });
 

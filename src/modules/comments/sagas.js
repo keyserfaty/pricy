@@ -17,7 +17,7 @@ export function * createWorker () {
   }
 
   yield put(actions.create.success());
-  yield put(actions.cleanState());
+  yield put(actions.cleanForm());
 }
 
 export function * createWatcher () {

@@ -15,6 +15,7 @@ const MainLayout = props => {
         <MainMenu />
         <Alert
           type='warning'
+          display={true}
           text={`
             ¿Qué es esto? Es una aplicación para imprimir etiquetas de precios en tandas.
             Por disposición del Gobierno argentino los locales desde 2017 tienen que mostrar

@@ -9,6 +9,14 @@ class AlertContainer extends React.Component {
     this.state = {
       display: true
     };
+
+    this.handleDisplay = this.handleDisplay.bind(this);
+  }
+
+  componentDidMount () {
+    this.setState({
+      display: this.props.display
+    });
   }
 
   handleDisplay () {
@@ -18,31 +26,23 @@ class AlertContainer extends React.Component {
   }
 
   render () {
+    const { display } = this.state;
+    const { type = 'warning', text } = this.props;
+
     return (
-      <Alert
-        {...this.props}
-        {...this.state}
-        handleDisplay={() => this.handleDisplay()}
-      />
+      <span>
+        { display && (
+          <div className='alert-container animated fadeIn'>
+            <div className={`alert alert-${type}`}>
+              { type === 'warning' && <FontAwesome className='alert-info' name='info-circle' /> }
+              <FontAwesome onClick={this.handleDisplay} className='alert-remove' name='times' />
+              {text}
+            </div>
+          </div>
+        )}
+      </span>
     );
   }
 }
-
-const Alert = props => {
-  const { type = 'warning', text, handleDisplay, display } = props;
-  return (
-    <span>
-      { display && (
-        <div className='alert-container'>
-          <div className={`alert alert-${type}`}>
-            <FontAwesome className='alert-info' name='info-circle' />
-            <FontAwesome onClick={handleDisplay} className='alert-remove' name='times' />
-            {text}
-          </div>
-        </div>
-      )}
-    </span>
-  );
-};
 
 export default AlertContainer;
