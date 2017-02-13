@@ -1,4 +1,4 @@
-// import config from '../modules/config';
+import comments from '../modules/comments';
 
 import { fork } from 'redux-saga/effects';
 
@@ -9,5 +9,5 @@ function startSagas (...sagas) {
 }
 
 export default startSagas(
-  // ...config.sagas
+  ...comments.sagas
 );

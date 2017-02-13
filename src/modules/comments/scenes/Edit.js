@@ -13,10 +13,9 @@ import { withHooks } from '../../../utils/withHooks';
 
 const Edit = props => {
   const {
-    interest,
-    handleCleanState,
-    handleSaveChanges,
-    handleInterestChange
+    formData,
+    handleOnChange,
+    handlePostComment
   } = props;
 
   return (
@@ -25,7 +24,7 @@ const Edit = props => {
     >
       <div className='comments-container'>
         <p>¿Querés sugerir una funcionalidad, te encontraste con un error o querés saludar a la creadora? Este es el lugar para dejar tu comentario.</p>
-        <textarea name="comment" className='comments-input' />
+        <textarea name="text" value={formData.text} onChange={handleOnChange} className='comments-input' />
         <Link to='prices'>
           <ButtonIcon
             icon='times'
@@ -38,6 +37,7 @@ const Edit = props => {
           label='Enviar comentario'
           icon='paper-plane'
           style={{ marginLeft: '20px' }}
+          onClick={handlePostComment}
         />
       </div>
     </PricesBox>
@@ -46,14 +46,12 @@ const Edit = props => {
 
 
 const mapStateToProps = state => ({
-  interest: state.config.ui.interest
+  formData: state.comments.formData
 });
 
 const mapDispatchToProps = dispatch => ({
-  onMount: () => dispatch(actions.onMount()),
-  handleInterestChange: (interest) => dispatch(actions.onChangeInterest({ ...interest })),
-  handleSaveChanges: () => dispatch(actions.saveChanges()),
-  handleCleanState: () => dispatch(actions.cleanState())
+  handlePostComment: () => dispatch(actions.create()),
+  handleOnChange: (e) => dispatch(actions.onChange({ label: e.target.name, value: e.target.value }))
 });
 
 export default connect(

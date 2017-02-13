@@ -4,38 +4,35 @@ import * as actions from './actions';
 const initialState = {
   status: 'init',
   error: '',
-  interest: {
-    due3: 10,
-    due12: 20
+  formData: {
+    text: ''
   },
-  ui: {
-    interest: {}
-  }
+  ui: {}
 };
 
 const reducer = handleActions({
-  [actions.onChangeInterest.type]: (state, action) => ({
+  [actions.onChange.type]: (state, action) => ({
     ...state,
-    ui: {
-      ...state.ui,
-      interest: {
-        ...state.ui.interest,
-        [action.payload.due]: Number(action.payload.value)
-      }
+    formData: {
+      ...state.formData,
+      [action.payload.label]: action.payload.value
     }
   }),
 
-  [actions.onMount.type]: (state, action) => ({
+  [actions.create.START]: (state, action) => ({
     ...state,
-    ui: {
-      ...state.ui,
-      interest: state.interest
-    }
+    status: 'pending'
   }),
 
-  [actions.saveChanges.type]: (state, action) => ({
+  [actions.create.SUCCESS]: (state, action) => ({
     ...state,
-    interest: state.ui.interest
+    status: 'success'
+  }),
+
+  [actions.create.FAILURE]: (state, action) => ({
+    ...state,
+    status: 'failure',
+    error: action.payload.error
   }),
 
   [actions.cleanState.type]: (state, action) => ({

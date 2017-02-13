@@ -1,3 +1,3 @@
 export default {
-  url: 'https://infinum-api.now.sh'
+  url: 'https://impresora-de-precios.firebaseio.com/'
 };

@@ -1,1 +1,1 @@
-export const NAMESPACE = 'config';
+export const NAMESPACE = 'comments';

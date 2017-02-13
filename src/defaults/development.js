@@ -1,3 +1,3 @@
 export default {
-  url: 'http://localhost:8000'
+  url: 'https://impresora-de-precios.firebaseio.com/'
 };
