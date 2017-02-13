@@ -1,0 +1,11 @@
+.comments-container {
+
+}
+
+.comments-input {
+    width: 100%;
+    height: 200px;
+    border: 1px solid #6EA5F1;
+    border-radius: 2px;
+    margin-bottom: 35px;
+}

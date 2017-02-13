@@ -26,3 +26,9 @@ button {
 button:focus {
   outline: none;
 }
+
+p {
+  font-family: 'Avenir', sans-serif;
+  font-size: 14px;
+  color: #5C5C5C;
+}

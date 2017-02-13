@@ -8,7 +8,11 @@ const FixedNavbar = props => {
   return (
     <div id='navbar'>
       <span className='creator'>
-        Creado con ❤️ por <a href='https://twitter.com/keyserfaty'>@keyserfaty</a>
+        <ButtonIcon
+          type='secondary'
+          label='Dejar un comentario'
+          icon='commenting-o'
+        />
       </span>
       <span className='print-container'>
         <span className='print-quantity'>
