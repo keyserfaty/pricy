@@ -9,11 +9,13 @@ import PricesBox from '../../_common/PricesBox/'
 import ButtonIcon from '../../_common/ButtonIcon/';
 
 import * as actions from '../actions';
+import * as selectors from '../selectors';
+import * as configSelectors from '../../config/selectors';
 
 import { withHooks } from '../../../utils/withHooks';
 
 const List = props => {
-  const { list, interest, handleAddNewPrice, handleOnChangePrice, handleRemovePrice } = props;
+  const { list, instalments, handleAddNewPrice, handleOnChangePrice, handleRemovePrice } = props;
 
   return (
     <PricesBox
@@ -31,8 +33,10 @@ const List = props => {
         <table>
           <tr>
             <th style={{ textAlign: 'left' }}>Precio efectivo</th>
-            <th>Precio 3 cuotas ({interest.due3}%)</th>
-            <th>Precio 12 cuotas ({interest.due12}%)</th>
+            {instalments.map(instalment =>
+              <th>Precio {instalment.quantity} cuotas ({instalment.interest}%)</th>
+            )}
+
             <th><FontAwesome name='trash-o' /></th>
           </tr>
 
@@ -40,7 +44,7 @@ const List = props => {
             <PricesSingle
               id={i}
               item={item}
-              interest={interest}
+              instalments={instalments}
               handleOnChangePrice={handleOnChangePrice}
               handleRemovePrice={handleRemovePrice}
             />
@@ -57,8 +61,8 @@ const List = props => {
 
 
 const mapStateToProps = state => ({
-  list: state.prices.list,
-  interest: state.config.interest
+  list: selectors.getList(state),
+  instalments: configSelectors.getInstalments(state)
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

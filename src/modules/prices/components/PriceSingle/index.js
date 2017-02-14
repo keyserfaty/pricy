@@ -7,7 +7,7 @@ const PriceSingle = props => {
   const {
     id,
     item,
-    interest,
+    instalments,
     handleOnChangePrice,
     handleRemovePrice
   } = props;
@@ -18,7 +18,7 @@ const PriceSingle = props => {
         <InputSign
           sign='$'
           value={item.price}
-          onChange={(e) => handleOnChangePrice({ id, interest, price: e.target.value })}
+          onChange={(e) => handleOnChangePrice({ id, instalments, price: e.target.value })}
         />
       </td>
       <td>$ {item.priceCard}</td>
