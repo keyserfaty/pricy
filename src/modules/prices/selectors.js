@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { getInstalments } from '../config/selectors';
-import { generatePrices } from './helpers';
+import { generatePrices, generatePricesForPrint } from './helpers';
 
 export const getList = state => state.prices.list;
 export const getStatus = state => state.prices.status;
@@ -15,6 +15,24 @@ export const getListWithInterestPrices = createSelector(
         prices: [
           ...elem.prices,
           ...generatePrices(instalments)(elem.prices[0].price)
+        ]
+      };
+
+      res.push(each);
+      return res;
+    }, []);
+  }
+);
+
+export const getListForPrint = createSelector(
+  getList,
+  getInstalments,
+  (list, instalments) => {
+    return list.reduce((res, elem) => {
+      const each = {
+        prices: [
+          ...elem.prices,
+          ...generatePricesForPrint(instalments)(elem.prices[0].price)
         ]
       };
 

@@ -5,7 +5,7 @@ import './styles.css';
 import ButtonIcon from '../ButtonIcon/';
 
 const FixedNavbar = props => {
-  const { list, interest, handlePrint } = props;
+  const { list, handlePrint } = props;
   return (
     <div id='navbar'>
       <span className='creator'>
@@ -26,7 +26,7 @@ const FixedNavbar = props => {
             icon='print'
             type='success'
             label='Imprimir etiquetas'
-            onClick={() => handlePrint(list, interest)}
+            onClick={() => handlePrint(list)}
           />
         </span>
       </span>

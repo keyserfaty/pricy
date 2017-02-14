@@ -8,42 +8,49 @@ import { pipe } from 'ramda';
  * @param item
  * @param interest
  */
-const generateText = (item, interest) => [{
-  text: `Contado: 
-         $ ${item.price}
-        `,
-  alignment: 'center',
-  fontSize: 18
-}, {
-  text: `3 cuotas de: $ ${Math.round(item.priceCard / 3)}`,
-  alignment: 'center'
-}, {
-  text: `TASA DE INTERES ${interest.due3}%`,
-  fontSize: 9,
-  alignment: 'center'
-}, {
-  text: `
-      12 cuotas de: $ ${Math.round(item.priceCardInterest / 12)}
-      con Ahora 12`,
-  alignment: 'center'
-}, {
-  text: `TASA DE INTERES ${interest.due12}%`,
-  fontSize: 9,
-  alignment: 'center'
-}];
+const generateText = item =>
+  item.prices.reduce((res, elem, i) => {
+    if (i === 0) {
+      const cash = {
+        text: `Contado: 
+         $ ${elem.price}`,
+        alignment: 'center',
+        fontSize: 18
+      };
+
+      res.push(cash);
+      return res;
+    }
+
+    const credit = [
+      {
+        text: `
+        ${elem.instalments} cuotas de: $ ${elem.price} ${elem.instalments === 12 ? `\n con Ahora 12` : ``}`,
+        alignment: 'center'
+      }, {
+        text: `TASA DE INTERES ${elem.interest}%`,
+        fontSize: 9,
+        alignment: 'center'
+      }
+    ];
+
+    res.push(credit);
+    return res;
+  }, []);
 
 /**
  * Generates an array of text labels
  * @param interest
  * @param list
  */
-const generateArray = interest => list => list.reduce((res, item) => {
-  res.push(generateText(item, interest));
+const generateArray = list => list.reduce((res, item) => {
+  res.push(generateText(item));
   return res;
 }, []);
 
 /**
- * Generates an array of array every three elements
+ * Generates an array of arrays every three elements
+ * to generate the table cells
  * @param list
  */
 const generateArrayGroups = list => list
@@ -58,7 +65,8 @@ const generateArrayGroups = list => list
   }, []);
 
 /**
- * Add empty spaces if list is not full
+ * Add empty spaces to array if list is not full
+ * so that table has at least 3 cells for every row
  * @param list
  * @returns {*}
  */
@@ -77,7 +85,7 @@ const generateEmptySpaces = list => {
 };
 
 //* Generates a PDF file
-const pdfGenerator = (list, interest) => {
+const pdfGenerator = list => {
   let docDefinition = {
     content: [{
       table: {
@@ -85,9 +93,9 @@ const pdfGenerator = (list, interest) => {
       }
     }]
   };
-
+  
   docDefinition.content[0].table.body = pipe(
-    generateArray(interest),
+    generateArray,
     generateArrayGroups,
     generateEmptySpaces
   )(list);

@@ -8,6 +8,8 @@ import Alert from '../Alert';
 
 import pdfGenerator from '../../../utils/pdfGenerator';
 
+import * as selectors from '../../prices/selectors';
+
 const MainLayout = props => {
   return (
     <div id="main">
@@ -32,12 +34,11 @@ const MainLayout = props => {
 };
 
 const mapStateToProps = state => ({
-  list: state.prices.list,
-  interest: state.config.interest
+  list: selectors.getListForPrint(state)
 });
 
 const mapDispatchToProps = dispatch => ({
-  handlePrint: (list, interest) => pdfGenerator(list, interest)
+  handlePrint: list => pdfGenerator(list)
 });
 
 export default connect(
