@@ -7,7 +7,7 @@ const PriceSingle = props => {
   const {
     id,
     item,
-    instalments,
+    handleAddNewPrice,
     handleOnChangePrice,
     handleRemovePrice
   } = props;
@@ -24,7 +24,8 @@ const PriceSingle = props => {
                 placeholder='0'
                 value={each.price}
                 style={{ marginLeft: '-3px' }}
-                onChange={(e) => handleOnChangePrice({ id, instalments, price: e.target.value })}
+                onKeyDown={(e) => e.which === 13 && handleAddNewPrice()}
+                onChange={(e) => handleOnChangePrice({ id, price: e.target.value })}
               />
             </td>
           )

@@ -44,7 +44,7 @@ const List = props => {
             <PricesSingle
               id={i}
               item={item.prices}
-              instalments={instalments}
+              handleAddNewPrice={handleAddNewPrice}
               handleOnChangePrice={handleOnChangePrice}
               handleRemovePrice={handleRemovePrice}
             />

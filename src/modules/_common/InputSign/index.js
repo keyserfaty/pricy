@@ -9,6 +9,7 @@ const InputText = props => {
     value,
     style,
     onChange,
+    onKeyDown,
     placeholder
   } = props;
 
@@ -16,6 +17,7 @@ const InputText = props => {
     <span>
       { sign && <div className='input-sign'>{sign}</div> }
       <input
+        autoFocus
         type={type}
         name={name}
         style={style}
@@ -23,6 +25,7 @@ const InputText = props => {
         onChange={onChange}
         placeholder={placeholder}
         className='input'
+        onKeyDown={onKeyDown}
       />
     </span>
   );
