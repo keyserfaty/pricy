@@ -5,6 +5,7 @@ const InputSign = props => {
   const {
     sign,
     value,
+    placeholder,
     onChange
   } = props;
 
@@ -14,6 +15,7 @@ const InputSign = props => {
       <input
         value={value}
         onChange={onChange}
+        placeholder={placeholder}
         type='number'
         className='input'
       />

@@ -67,8 +67,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   handleAddNewPrice: () => dispatch(actions.addPrice()),
-  handleRemovePrice: prices => dispatch(actions.removePrice({ ...prices })),
-  handleOnChangePrice: prices =>  dispatch(actions.onChangePrice({ id: prices.id, prices }))
+  handleRemovePrice: price => dispatch(actions.removePrice({ ...price })),
+  handleOnChangePrice: price =>  dispatch(actions.onChangePrice({ ...price }))
 });
 
 export default connect(

@@ -18,6 +18,7 @@ const PriceSingle = props => {
         <InputSign
           sign='$'
           value={item.price}
+          placeholder='0'
           onChange={(e) => handleOnChangePrice({ id, instalments, price: e.target.value })}
         />
       </td>
