@@ -1,26 +1,31 @@
 import React from 'react';
 import './styles.css';
 
-const InputSign = props => {
+const InputText = props => {
   const {
     sign,
+    name,
+    type,
     value,
-    placeholder,
-    onChange
+    style,
+    onChange,
+    placeholder
   } = props;
 
   return (
     <span>
-      <div className='input-sign'>{sign}</div>
+      { sign && <div className='input-sign'>{sign}</div> }
       <input
+        type={type}
+        name={name}
+        style={style}
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        type='number'
         className='input'
       />
     </span>
   );
 };
 
-export default InputSign;
+export default InputText;

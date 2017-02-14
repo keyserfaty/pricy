@@ -29,7 +29,9 @@ const Edit = props => {
           <div className='config-price-label'>Interés en {instalment.quantity} cuotas</div>
           <InputSign
             sign='%'
+            type='number'
             value={instalment.interest}
+            style={{ marginLeft: '-3px' }}
             onChange={(e) => handleInterestChange({ id: i, interest: e.target.value })}
           />
         </div>

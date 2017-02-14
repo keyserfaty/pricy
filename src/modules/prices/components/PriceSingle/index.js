@@ -20,8 +20,10 @@ const PriceSingle = props => {
             <td style={{ textAlign: 'left' }}>
               <InputSign
                 sign='$'
-                value={each.price}
+                type='number'
                 placeholder='0'
+                value={each.price}
+                style={{ marginLeft: '-3px' }}
                 onChange={(e) => handleOnChangePrice({ id, instalments, price: e.target.value })}
               />
             </td>

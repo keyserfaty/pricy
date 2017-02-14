@@ -5,6 +5,8 @@ const initialState = {
   status: 'init',
   error: '',
   formData: {
+    name: '',
+    email: '',
     text: ''
   },
   ui: {}
@@ -38,7 +40,8 @@ const reducer = handleActions({
   [actions.cleanForm.type]: (state, action) => ({
     ...state,
     formData: {
-      ...state.formData,
+      name: '',
+      email: '',
       text: ''
     }
   }),

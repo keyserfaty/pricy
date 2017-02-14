@@ -5,6 +5,7 @@ import './styles.css';
 
 import PricesBox from '../../_common/PricesBox/'
 import ButtonIcon from '../../_common/ButtonIcon/'
+import InputText from '../../_common/InputSign';
 import Alert from '../../_common/Alert/';
 
 import * as actions from '../actions';
@@ -23,7 +24,7 @@ const Edit = props => {
     <PricesBox
       title='Dejá un comentario'
     >
-      <div className='comments-container'>
+      <div className='comments-container' style={{ paddingBottom: '20px' }}>
         <p>¿Querés sugerir una funcionalidad, te encontraste con un error o querés saludar a la creadora? Este es el lugar para dejar tu comentario.</p>
         { status === 'success' && (
           <Alert
@@ -32,12 +33,39 @@ const Edit = props => {
             text='🎉 Comentario enviado. Gracias!'
           />
         )}
-        <textarea name="text" value={formData.text} onChange={handleOnChange} className='comments-input' />
+        <div>
+          <InputText
+            name='name'
+            type='text'
+            placeholder='Tu nombre'
+            value={formData.name}
+            onChange={handleOnChange}
+            style={{
+              marginRight: '15px',
+              marginBottom: '15px',
+              width: '180px'
+            }}
+          />
+          <InputText
+            name='email'
+            type='text'
+            placeholder='E-mail'
+            value={formData.email}
+            onChange={handleOnChange}
+            style={{
+              marginRight: '15px',
+              marginBottom: '15px',
+              width: '200px'
+
+            }}
+          />
+        </div>
+        <textarea name='text' value={formData.text} onChange={handleOnChange} className='comments-input' />
         <Link to='prices'>
           <ButtonIcon
-            icon='times'
+            icon='long-arrow-left'
             type='secondary'
-            label='Cancelar'
+            label='Volver'
           />
         </Link>
         <ButtonIcon
