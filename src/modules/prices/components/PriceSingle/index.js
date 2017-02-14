@@ -14,16 +14,22 @@ const PriceSingle = props => {
 
   return (
     <tr key={id} className='animated fadeIn' style={{ animationDuration: '0.5s' }}>
-      <td style={{ textAlign: 'left' }}>
-        <InputSign
-          sign='$'
-          value={item.price}
-          placeholder='0'
-          onChange={(e) => handleOnChangePrice({ id, instalments, price: e.target.value })}
-        />
-      </td>
-      <td>$ {item.priceCard}</td>
-      <td>$ {item.priceCardInterest}</td>
+      { item.map(each => {
+        if (each.instalments === 0) {
+          return (
+            <td style={{ textAlign: 'left' }}>
+              <InputSign
+                sign='$'
+                value={each.price}
+                placeholder='0'
+                onChange={(e) => handleOnChangePrice({ id, instalments, price: e.target.value })}
+              />
+            </td>
+          )
+        }
+
+        return <td>$ {each.price}</td>
+      }) }
       <td>
         <ButtonIcon
           className="box-remove-button"

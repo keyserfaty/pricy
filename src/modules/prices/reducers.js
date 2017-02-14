@@ -3,8 +3,12 @@ import { handleActions } from 'redux-actions';
 import * as actions from './actions';
 
 const pricesInitialState = {
-  instalments: 0, // This allows future support for custom prices per instalment
-  price: null
+  prices: [
+    {
+      instalments: 0, // This allows future support for custom prices per instalment
+      price: null
+    }
+  ]
 };
 
 const initialState = {
@@ -21,8 +25,8 @@ const reducer = handleActions({
     ];
 
     // Update price in list
-    list[action.payload.id] = {
-      ...state.list[action.payload.id],
+    list[action.payload.id].prices[0] = { // It's always the first element since alternative prices are never saved to state
+      ...state.list[action.payload.id].prices[0],
       price: Number(action.payload.price)
     };
 

@@ -43,7 +43,7 @@ const List = props => {
           { list.map((item, i) =>
             <PricesSingle
               id={i}
-              item={item}
+              item={item.prices}
               instalments={instalments}
               handleOnChangePrice={handleOnChangePrice}
               handleRemovePrice={handleRemovePrice}
