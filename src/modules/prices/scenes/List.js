@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 
@@ -21,12 +22,23 @@ const List = props => {
     <PricesBox
       title='Lista de precios'
       button={
-        <ButtonIcon
-          icon='plus'
-          type='primary'
-          label='Agregar nuevo'
-          onClick={handleAddNewPrice}
-        />
+        <span>
+          <Link to='config'>
+            <ButtonIcon
+              className='box-config-button'
+              icon='cog'
+              type='secondary'
+              label='Configurar'
+            />
+          </Link>
+
+          <ButtonIcon
+            icon='plus'
+            type='primary'
+            label='Agregar nuevo'
+            onClick={handleAddNewPrice}
+          />
+        </span>
       }
     >
       <section className='table'>
