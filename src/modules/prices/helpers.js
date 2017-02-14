@@ -1,11 +1,13 @@
-export const generateSinglePrice = int => price =>
-  Math.round(Number(price) * (int + 100)) / 100;
+export const generateSinglePrice = interest => price =>
+  Math.round(price * (interest + 100)) / 100;
 
-export const generatePricesList = prices => ({
-  price: prices.price,
-  priceCard: generateSinglePrice(prices.interest.due3)(prices.price),
-  priceCardInterest: generateSinglePrice(prices.interest.due12)(prices.price)
-});
+export const generatePrices = instalments => price =>
+  instalments.reduce((res, elem) => {
+    const each = {
+      instalments: elem.quantity,
+      price: generateSinglePrice(elem.interest)(price)
+    };
 
-export const generatePricesListBundle = prices => prices
-  .map(item => generatePricesList(item));
+    res.push(each);
+    return res;
+  }, []);

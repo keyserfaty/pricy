@@ -61,7 +61,7 @@ const List = props => {
 
 
 const mapStateToProps = state => ({
-  list: selectors.getList(state),
+  list: selectors.getListWithInterestPrices(state),
   instalments: configSelectors.getInstalments(state)
 });
 

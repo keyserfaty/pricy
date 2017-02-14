@@ -40,7 +40,14 @@ const reducer = handleActions({
     ...state,
     list: [
       ...state.list,
-      pricesInitialState
+      {
+        prices: [
+          {
+            instalments: 0,
+            price: null
+          }
+        ]
+      }
     ]
   }),
 
