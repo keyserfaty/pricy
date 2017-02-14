@@ -8,12 +8,13 @@ import InputSign from '../../_common/InputSign/'
 import ButtonIcon from '../../_common/ButtonIcon/'
 
 import * as actions from '../actions';
+import * as selectors from '../selectors';
 
 import { withHooks } from '../../../utils/withHooks';
 
 const Edit = props => {
   const {
-    interest,
+    instalments,
     handleCleanState,
     handleSaveChanges,
     handleInterestChange
@@ -23,22 +24,16 @@ const Edit = props => {
     <PricesBox
       title='Configuración'
     >
-      <div className='config-price-container'>
-        <div className='config-price-label'>Interés en 3 cuotas</div>
-        <InputSign
-          sign='%'
-          value={interest.due3}
-          onChange={(e) => handleInterestChange({ due: 'due3', value: e.target.value })}
-        />
-      </div>
-      <div className='config-price-container'>
-        <div className='config-price-label'>Interés en 12 cuotas</div>
-        <InputSign
-          sign='%'
-          value={interest.due12}
-          onChange={(e) => handleInterestChange({ due: 'due12', value: e.target.value })}
-        />
-      </div>
+      { instalments.map((instalment, i) =>
+        <div key={i} className='config-price-container'>
+          <div className='config-price-label'>Interés en {instalment.quantity} cuotas</div>
+          <InputSign
+            sign='%'
+            value={instalment.interest}
+            onChange={(e) => handleInterestChange({ id: i, interest: e.target.value })}
+          />
+        </div>
+      )}
 
       <div className='config-price-footer'>
         <Link to='prices'>
@@ -66,12 +61,12 @@ const Edit = props => {
 
 
 const mapStateToProps = state => ({
-  interest: state.config.ui.interest
+  instalments: selectors.getUi(state).instalments
 });
 
 const mapDispatchToProps = dispatch => ({
   onMount: () => dispatch(actions.onMount()),
-  handleInterestChange: (interest) => dispatch(actions.onChangeInterest({ ...interest })),
+  handleInterestChange: (instalments) => dispatch(actions.onChangeInterest({ ...instalments })),
   handleSaveChanges: () => dispatch(actions.saveChanges()),
   handleCleanState: () => dispatch(actions.cleanState())
 });

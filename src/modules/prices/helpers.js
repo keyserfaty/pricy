@@ -6,3 +6,6 @@ export const generatePricesList = prices => ({
   priceCard: generateSinglePrice(prices.interest.due3)(prices.price),
   priceCardInterest: generateSinglePrice(prices.interest.due12)(prices.price)
 });
+
+export const generatePricesListBundle = prices => prices
+  .map(item => generatePricesList(item));

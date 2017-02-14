@@ -4,44 +4,59 @@ import * as actions from './actions';
 const initialState = {
   status: 'init',
   error: '',
-  interest: {
-    due3: 10,
-    due12: 20
-  },
+  instalments: [
+    {
+      quantity: 3,
+      interest: 10
+    },
+    {
+      quantity: 12,
+      interest: 20
+    }
+  ],
   ui: {
-    interest: {}
+    instalments: []
   }
 };
 
 const reducer = handleActions({
-  [actions.onChangeInterest.type]: (state, action) => ({
-    ...state,
-    ui: {
-      ...state.ui,
-      interest: {
-        ...state.ui.interest,
-        [action.payload.due]: Number(action.payload.value)
+  [actions.onChangeInterest.type]: (state, action) => {
+    const instalments = [
+      ...state.instalments,
+    ];
+
+    // Generate the instalments object with updated interest rate
+    instalments[action.payload.id] = {
+      ...state.instalments[action.payload.id],
+      interest: Number(action.payload.interest)
+    };
+
+    return {
+      ...state,
+      ui: {
+        ...state.ui,
+        instalments: instalments
       }
     }
-  }),
+  },
 
   [actions.onMount.type]: (state, action) => ({
     ...state,
     ui: {
       ...state.ui,
-      interest: state.interest
+      instalments: state.instalments
     }
   }),
 
   [actions.saveChanges.type]: (state, action) => ({
     ...state,
-    interest: state.ui.interest
+    instalments: state.ui.instalments
   }),
 
   [actions.cleanState.type]: (state, action) => ({
     ...state,
     ui: {
-      interest: {}
+      instalments: []
     }
   })
 

@@ -1,6 +1,7 @@
 import { handleActions } from 'redux-actions';
 
 import * as actions from './actions';
+import * as helpers from './helpers';
 
 const pricesInitialState = {
   price: 0,
@@ -16,12 +17,18 @@ const initialState = {
 };
 
 const reducer = handleActions({
+  [actions.updatePrices.type]: (state, action) => ({
+    ...state,
+    list: helpers.generatePricesListBundle(state.list)
+  }),
+
   [actions.onChangePrice.type]: (state, action) => {
     const list = [
       ...state.list,
     ];
 
-    list[action.payload.id] = action.payload.prices;
+    // Generate the prices with correct dues
+    list[action.payload.id] = helpers.generatePricesList(action.payload.prices);
 
     return {
       ...state,
