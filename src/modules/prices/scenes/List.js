@@ -8,6 +8,7 @@ import PricesSingle from '../components/PriceSingle/';
 import PricesBox from '../../_common/PricesBox/'
 import ButtonIcon from '../../_common/ButtonIcon/';
 
+import * as helpers from '../helpers';
 import * as actions from '../actions';
 
 import { withHooks } from '../../../utils/withHooks';
@@ -63,19 +64,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   handleAddNewPrice: () => dispatch(actions.addPrice()),
-  handleRemovePrice: (prices) => dispatch(actions.removePrice({ ...prices })),
-  handleOnChangePrice: (prices) => {
-    const generateSinglePrice = (price, int) =>
-      Math.round(Number(price) * (int + 100)) / 100;
-
-    const pricesList = {
-      price: prices.price,
-      priceCard: generateSinglePrice(prices.price, prices.interest.due3),
-      priceCardInterest: generateSinglePrice(prices.price, prices.interest.due12)
-    };
-
-    return dispatch(actions.onChangePrice({ id: prices.id, prices: pricesList }));
-  }
+  handleRemovePrice: prices => dispatch(actions.removePrice({ ...prices })),
+  handleOnChangePrice: prices =>  dispatch(actions.onChangePrice({ id: prices.id, prices: helpers.generatePricesList(prices) }))
 });
 
 export default connect(
