@@ -14,15 +14,15 @@ const PriceSingle = props => {
 
   return (
     <tr key={id} className='animated fadeIn' style={{ animationDuration: '0.5s' }}>
-      { item.map(each => {
+      { item.map((each, index) => {
         if (each.instalments === 0) {
           return (
-            <td style={{ textAlign: 'left' }}>
+            <td style={{ textAlign: 'left' }} key={`${id}-${index}`}>
               <InputSign
                 sign='$'
                 type='number'
                 placeholder='0'
-                value={each.price}
+                value={each.price || ''}
                 style={{ marginLeft: '-3px' }}
                 onKeyDown={(e) => e.which === 13 && handleAddNewPrice()}
                 onChange={(e) => handleOnChangePrice({ id, price: e.target.value })}
@@ -30,8 +30,7 @@ const PriceSingle = props => {
             </td>
           )
         }
-
-        return <td>$ {each.price}</td>
+        return <td key={`${id}-${index}`}>$ {each.price}</td>
       }) }
       <td>
         <ButtonIcon
