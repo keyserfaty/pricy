@@ -12,7 +12,7 @@ const generateText = item =>
   item.prices.reduce((res, elem, i) => {
     if (i === 0) {
       const cash = {
-        text: `Contado: 
+        text: `Contado:
          $ ${elem.price}`,
         alignment: 'center',
         fontSize: 18
@@ -79,6 +79,8 @@ const generateEmptySpaces = list => {
       case 2:
         list[list.length - 1].push([]);
         break;
+      default:
+        list[list.length - 1].push();
     }
   }
   return list;
@@ -93,7 +95,7 @@ const pdfGenerator = list => {
       }
     }]
   };
-  
+
   docDefinition.content[0].table.body = pipe(
     generateArray,
     generateArrayGroups,

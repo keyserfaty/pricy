@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, IndexRoute, IndexRedirect } from 'react-router';
+import { Route, IndexRedirect } from 'react-router';
 import MainLayout from '../modules/_common/MainLayout/';
 
 import prices from '../modules/prices';

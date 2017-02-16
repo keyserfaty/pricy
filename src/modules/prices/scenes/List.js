@@ -43,28 +43,30 @@ const List = props => {
     >
       <section className='table'>
         <table>
-          <tr>
-            <th style={{ textAlign: 'left' }}>Precio efectivo</th>
-            {instalments.map(instalment =>
-              <th>Precio {instalment.quantity} cuotas ({instalment.interest}%)</th>
+          <tbody>
+            <tr>
+              <th style={{ textAlign: 'left' }}>Precio efectivo</th>
+              {instalments.map((instalment, index) =>
+                <th key={`${instalment}-${index}`}>Precio {instalment.quantity} cuotas ({instalment.interest}%)</th>
+              )}
+
+              <th><FontAwesome name='trash-o' /></th>
+            </tr>
+            { list.map((item, i) =>
+              <PricesSingle
+                id={i}
+                key={i}
+                item={item.prices}
+                handleAddNewPrice={handleAddNewPrice}
+                handleOnChangePrice={handleOnChangePrice}
+                handleRemovePrice={handleRemovePrice}
+              />
             )}
 
-            <th><FontAwesome name='trash-o' /></th>
-          </tr>
-
-          { list.map((item, i) =>
-            <PricesSingle
-              id={i}
-              item={item.prices}
-              handleAddNewPrice={handleAddNewPrice}
-              handleOnChangePrice={handleOnChangePrice}
-              handleRemovePrice={handleRemovePrice}
-            />
-          )}
-
-          <tr className='last'>
-            <td style={{ textAlign: 'left' }}>🛒 Cantidad: # {list.length}</td>
-          </tr>
+            <tr className='last'>
+              <td style={{ textAlign: 'left' }}>🛒 Cantidad: # {list.length}</td>
+            </tr>
+          </tbody>
         </table>
       </section>
     </PricesBox>
