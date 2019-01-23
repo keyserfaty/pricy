@@ -10,6 +10,10 @@ const initialState = {
       interest: 10
     },
     {
+      quantity: 6,
+      interest: 12
+    },
+    {
       quantity: 12,
       interest: 20
     }
