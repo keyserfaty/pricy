@@ -48,6 +48,9 @@ const PriceSingle = props => {
             </td>
           )
         }
+        if (each.instalments === -1) {
+          return <td key={`${id}-${index}`} className="cash-discount-price">$ {formatNumber(each.price)}</td>
+        }
         return <td key={`${id}-${index}`}>$ {formatNumber(each.price)}</td>
       }) }
       <td>

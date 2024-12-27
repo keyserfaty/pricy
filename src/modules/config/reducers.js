@@ -18,8 +18,10 @@ const initialState = {
       interest: 20
     }
   ],
+  cashDiscount: 0,
   ui: {
-    instalments: []
+    instalments: [],
+    cashDiscount: 0
   }
 };
 
@@ -44,23 +46,34 @@ const reducer = handleActions({
     }
   },
 
+  [actions.onChangeCashDiscount.type]: (state, action) => ({
+    ...state,
+    ui: {
+      ...state.ui,
+      cashDiscount: Number(action.payload)
+    }
+  }),
+
   [actions.onMount.type]: (state, action) => ({
     ...state,
     ui: {
       ...state.ui,
-      instalments: state.instalments
+      instalments: state.instalments,
+      cashDiscount: state.cashDiscount
     }
   }),
 
   [actions.saveChanges.type]: (state, action) => ({
     ...state,
-    instalments: state.ui.instalments
+    instalments: state.ui.instalments,
+    cashDiscount: state.ui.cashDiscount
   }),
 
   [actions.cleanState.type]: (state, action) => ({
     ...state,
     ui: {
-      instalments: []
+      instalments: [],
+      cashDiscount: 0
     }
   })
 

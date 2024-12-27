@@ -55,3 +55,8 @@
     padding-bottom: 15px;
     border-collapse: collapse;
 }
+
+.cash-discount-price {
+    font-weight: 500;
+    color: #4CAF50;
+}

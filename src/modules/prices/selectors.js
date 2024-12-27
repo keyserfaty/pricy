@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
-import { getInstalments } from '../config/selectors';
-import { generatePrices, generatePricesForPrint } from './helpers';
+import { getInstalments, getCashDiscount } from '../config/selectors';
+import { generatePrices, generatePricesForPrint, generateCashDiscountPrice } from './helpers';
 
 export const getList = state => state.prices.list;
 export const getStatus = state => state.prices.status;
@@ -9,12 +9,21 @@ export const getError = state => state.prices.error;
 export const getListWithInterestPrices = createSelector(
   getList,
   getInstalments,
-  (list, instalments) => {
+  getCashDiscount,
+  (list, instalments, cashDiscount) => {
     return list.reduce((res, elem) => {
+      const basePrice = elem.prices[0].price;
       const each = {
         prices: [
-          ...elem.prices,
-          ...generatePrices(instalments)(elem.prices[0].price)
+          {
+            instalments: 0,
+            price: basePrice
+          },
+          {
+            instalments: -1, // Special flag for cash discount
+            price: generateCashDiscountPrice(cashDiscount)(basePrice)
+          },
+          ...generatePrices(instalments)(basePrice)
         ]
       };
 
@@ -27,12 +36,22 @@ export const getListWithInterestPrices = createSelector(
 export const getListForPrint = createSelector(
   getList,
   getInstalments,
-  (list, instalments) => {
+  getCashDiscount,
+  (list, instalments, cashDiscount) => {
     return list.reduce((res, elem) => {
+      const basePrice = elem.prices[0].price;
       const each = {
         prices: [
-          ...elem.prices,
-          ...generatePricesForPrint(instalments)(elem.prices[0].price)
+          {
+            instalments: 0,
+            price: basePrice
+          },
+          {
+            instalments: -1,
+            price: generateCashDiscountPrice(cashDiscount)(basePrice),
+            cashDiscount
+          },
+          ...generatePricesForPrint(instalments)(basePrice)
         ]
       };
 

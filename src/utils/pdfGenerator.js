@@ -9,6 +9,7 @@ import { pipe } from 'ramda';
  * @returns {string}
  */
 const formatNumber = number => {
+  if (number === null || number === undefined) return '0';
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 };
 
@@ -19,41 +20,88 @@ const formatNumber = number => {
  */
 const generateText = item =>
   item.prices.reduce((res, elem, i) => {
+    if (!elem || typeof elem.price === 'undefined') return res;
+
     if (i === 0) {
-      const cash = {
-        text: `$ ${formatNumber(elem.price)}`,
+      const basePrice = {
+        text: `Precio base: $ ${formatNumber(elem.price)}`,
         alignment: 'center',
-        fontSize: 32,
-        bold: true,
-        margin: [0, 0, 0, 15]
+        fontSize: 11,
+        color: '#666666',
+        margin: [0, 0, 0, 5]
       };
 
-      res.push(cash);
+      res.push(basePrice);
       return res;
     }
 
-    const credit = [
-      {
-        text: `${elem.instalments} cuotas de:`,
-        alignment: 'center',
-        fontSize: 11,
-        margin: [0, 5, 0, 0]
-      },
-      {
-        text: `$ ${formatNumber(elem.price)}`,
-        alignment: 'center',
-        fontSize: 14,
-        bold: true,
-        margin: [0, 2, 0, 2]
-      },
-      {
-        text: `TASA DE INTERES ${elem.interest}%`,
-        fontSize: 8,
-        color: '#666666',
-        alignment: 'center',
+    if (i === 1) {
+      const cashPrice = {
+        stack: [
+          {
+            text: 'Precio efectivo',
+            alignment: 'center',
+            fontSize: 14,
+            margin: [0, 0, 0, 2]
+          },
+          {
+            text: `$ ${formatNumber(elem.price)}`,
+            alignment: 'center',
+            fontSize: 32,
+            bold: true,
+            margin: [0, 0, 0, 2]
+          },
+          {
+            text: `${elem.cashDiscount || 0}% de descuento`,
+            alignment: 'center',
+            fontSize: 10,
+            margin: [0, 0, 0, 5]
+          },
+          {
+            canvas: [
+              {
+                type: 'line',
+                x1: 15,
+                y1: 0,
+                x2: 135,
+                y2: 0,
+                lineWidth: 0.5,
+                lineColor: '#CCCCCC'
+              }
+            ]
+          }
+        ],
         margin: [0, 0, 0, 10]
-      }
-    ];
+      };
+
+      res.push(cashPrice);
+      return res;
+    }
+
+    const credit = {
+      stack: [
+        {
+          text: `${elem.instalments} cuotas de:`,
+          alignment: 'center',
+          fontSize: 11,
+          margin: [0, 5, 0, 0]
+        },
+        {
+          text: `$ ${formatNumber(elem.price)}`,
+          alignment: 'center',
+          fontSize: 14,
+          bold: true,
+          margin: [0, 2, 0, 2]
+        },
+        {
+          text: `TASA DE INTERES ${elem.interest || 0}%`,
+          alignment: 'center',
+          fontSize: 8,
+          color: '#666666',
+          margin: [0, 0, 0, 10]
+        }
+      ]
+    };
 
     res.push(credit);
     return res;

@@ -1,6 +1,9 @@
 export const generateSinglePrice = interest => price =>
   Math.round(price * (interest + 100)) / 100;
 
+export const generateCashDiscountPrice = discount => price =>
+  Math.round(price * (100 - discount)) / 100;
+
 export const generateSinglePriceInInstalments = (interest, instalments) => price =>
   Math.round(generateSinglePrice(interest)(price) / instalments);
 

@@ -16,7 +16,7 @@ import * as configSelectors from '../../config/selectors';
 import { withHooks } from '../../../utils/withHooks';
 
 const List = props => {
-  const { list, instalments, handleAddNewPrice, handleOnChangePrice, handleRemovePrice } = props;
+  const { list, instalments, cashDiscount, handleAddNewPrice, handleOnChangePrice, handleRemovePrice } = props;
 
   return (
     <PricesBox
@@ -45,7 +45,8 @@ const List = props => {
         <table>
           <tbody>
             <tr>
-              <th style={{ textAlign: 'left' }}>Precio efectivo</th>
+              <th style={{ textAlign: 'left' }}>Precio base</th>
+              <th>Precio efectivo ({cashDiscount}% desc.)</th>
               {instalments.map((instalment, index) =>
                 <th key={`${instalment}-${index}`}>Precio {instalment.quantity} cuotas ({instalment.interest}%)</th>
               )}
@@ -76,7 +77,8 @@ const List = props => {
 
 const mapStateToProps = state => ({
   list: selectors.getListWithInterestPrices(state),
-  instalments: configSelectors.getInstalments(state)
+  instalments: configSelectors.getInstalments(state),
+  cashDiscount: configSelectors.getCashDiscount(state)
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

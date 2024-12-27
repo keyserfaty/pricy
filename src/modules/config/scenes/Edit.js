@@ -15,15 +15,28 @@ import { withHooks } from '../../../utils/withHooks';
 const Edit = props => {
   const {
     instalments,
+    cashDiscount,
     handleCleanState,
     handleSaveChanges,
-    handleInterestChange
+    handleInterestChange,
+    handleCashDiscountChange
   } = props;
 
   return (
     <PricesBox
       title='Configuración'
     >
+      <div className='config-price-container'>
+        <div className='config-price-label'>Descuento en efectivo</div>
+        <InputSign
+          sign='%'
+          type='number'
+          value={cashDiscount}
+          style={{ marginLeft: '-3px' }}
+          onChange={(e) => handleCashDiscountChange(e.target.value)}
+        />
+      </div>
+
       { instalments.map((instalment, i) =>
         <div key={i} className='config-price-container'>
           <div className='config-price-label'>Interés en {instalment.quantity} cuotas</div>
@@ -63,12 +76,14 @@ const Edit = props => {
 
 
 const mapStateToProps = state => ({
-  instalments: selectors.getUi(state).instalments
+  instalments: selectors.getUi(state).instalments,
+  cashDiscount: selectors.getUi(state).cashDiscount
 });
 
 const mapDispatchToProps = dispatch => ({
   onMount: () => dispatch(actions.onMount()),
   handleInterestChange: (instalments) => dispatch(actions.onChangeInterest({ ...instalments })),
+  handleCashDiscountChange: (discount) => dispatch(actions.onChangeCashDiscount(discount)),
   handleSaveChanges: () => dispatch(actions.saveChanges()),
   handleCleanState: () => dispatch(actions.cleanState())
 });
