@@ -4,6 +4,15 @@ import './libs/vfs_fonts';
 import { pipe } from 'ramda';
 
 /**
+ * Format number to Latin notation (dot as thousands separator, comma as decimal)
+ * @param number
+ * @returns {string}
+ */
+const formatNumber = number => {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+};
+
+/**
  * Generates an array with content of one price label
  * @param item
  * @param interest
@@ -12,9 +21,11 @@ const generateText = item =>
   item.prices.reduce((res, elem, i) => {
     if (i === 0) {
       const cash = {
-        text: `$ ${elem.price}`,
+        text: `$ ${formatNumber(elem.price)}`,
         alignment: 'center',
-        fontSize: 24
+        fontSize: 32,
+        bold: true,
+        margin: [0, 0, 0, 15]
       };
 
       res.push(cash);
@@ -23,13 +34,24 @@ const generateText = item =>
 
     const credit = [
       {
-        text: `
-        ${elem.instalments} cuotas de: $ ${elem.price} ${elem.instalments}`,
-        alignment: 'center'
-      }, {
+        text: `${elem.instalments} cuotas de:`,
+        alignment: 'center',
+        fontSize: 11,
+        margin: [0, 5, 0, 0]
+      },
+      {
+        text: `$ ${formatNumber(elem.price)}`,
+        alignment: 'center',
+        fontSize: 14,
+        bold: true,
+        margin: [0, 2, 0, 2]
+      },
+      {
         text: `TASA DE INTERES ${elem.interest}%`,
-        fontSize: 9,
-        alignment: 'center'
+        fontSize: 8,
+        color: '#666666',
+        alignment: 'center',
+        margin: [0, 0, 0, 10]
       }
     ];
 
