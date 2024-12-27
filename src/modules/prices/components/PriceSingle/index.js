@@ -24,8 +24,28 @@ const PriceSingle = props => {
     item,
     handleAddNewPrice,
     handleOnChangePrice,
-    handleRemovePrice
+    handleRemovePrice,
+    isMobile
   } = props;
+
+  if (isMobile) {
+    return (
+      <div className='price-row'>
+        <InputSign
+          sign='$'
+          type='text'
+          placeholder='0'
+          value={formatNumber(item[0].price) || ''}
+          style={{ marginLeft: '-3px' }}
+          onKeyDown={(e) => e.which === 13 && handleAddNewPrice()}
+          onChange={(e) => handleOnChangePrice({ 
+            id, 
+            price: parseNumber(e.target.value)
+          })}
+        />
+      </div>
+    );
+  }
 
   return (
     <tr key={id} className='animated fadeIn' style={{ animationDuration: '0.5s' }}>

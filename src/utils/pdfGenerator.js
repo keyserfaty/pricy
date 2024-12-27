@@ -24,7 +24,7 @@ const generateText = item =>
 
     if (i === 0) {
       const basePrice = {
-        text: `Precio base: $ ${formatNumber(elem.price)}`,
+        text: `Precio lista: $ ${formatNumber(elem.price)}`,
         alignment: 'center',
         fontSize: 11,
         color: '#666666',

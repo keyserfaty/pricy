@@ -1,6 +1,6 @@
 #container {
     width: 60%;
-    background: linear-gradient(#fff 44%, #f7f7f7);;
+    background: linear-gradient(#fff 44%, #f7f7f7);
     margin: 0 auto;
     min-height: 100vh;
     padding: 45px 80px;
@@ -16,5 +16,21 @@
 @media (max-width: 800px) {
     #container {
         width: 95%;
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    #container {
+        width: 100%;
+        padding: 20px 15px;
+    }
+    
+    /* Ensure alert text is readable on mobile */
+    .alert {
+        font-size: 14px;
+        padding: 12px;
+        margin: 10px 0;
+        line-height: 1.4;
     }
 }
