@@ -12,10 +12,9 @@ const generateText = item =>
   item.prices.reduce((res, elem, i) => {
     if (i === 0) {
       const cash = {
-        text: `Contado:
-         $ ${elem.price}`,
+        text: `$ ${elem.price}`,
         alignment: 'center',
-        fontSize: 18
+        fontSize: 24
       };
 
       res.push(cash);
@@ -25,7 +24,7 @@ const generateText = item =>
     const credit = [
       {
         text: `
-        ${elem.instalments} cuotas de: $ ${elem.price} ${elem.instalments === 12 ? `\n con Ahora 12` : ``}`,
+        ${elem.instalments} cuotas de: $ ${elem.price} ${elem.instalments}`,
         alignment: 'center'
       }, {
         text: `TASA DE INTERES ${elem.interest}%`,
