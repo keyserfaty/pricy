@@ -3,6 +3,21 @@ import React from 'react';
 import InputSign from '../../../_common/InputSign/';
 import ButtonIcon from '../../../_common/ButtonIcon/';
 
+const formatNumber = (value) => {
+  if (!value) return '';
+  // Convert to string and replace dots with commas for decimal
+  return value.toString()
+    .replace('.', ',')
+    // Add dots for thousands
+    .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+};
+
+const parseNumber = (value) => {
+  if (!value) return '';
+  // Remove thousand separators and convert comma to dot for calculation
+  return value.replace(/\./g, '').replace(',', '.');
+};
+
 const PriceSingle = props => {
   const {
     id,
@@ -20,17 +35,20 @@ const PriceSingle = props => {
             <td style={{ textAlign: 'left' }} key={`${id}-${index}`}>
               <InputSign
                 sign='$'
-                type='number'
+                type='text'
                 placeholder='0'
-                value={each.price || ''}
+                value={formatNumber(each.price) || ''}
                 style={{ marginLeft: '-3px' }}
                 onKeyDown={(e) => e.which === 13 && handleAddNewPrice()}
-                onChange={(e) => handleOnChangePrice({ id, price: e.target.value })}
+                onChange={(e) => handleOnChangePrice({ 
+                  id, 
+                  price: parseNumber(e.target.value)
+                })}
               />
             </td>
           )
         }
-        return <td key={`${id}-${index}`}>$ {each.price}</td>
+        return <td key={`${id}-${index}`}>$ {formatNumber(each.price)}</td>
       }) }
       <td>
         <ButtonIcon
