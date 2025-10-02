@@ -1,0 +1,25 @@
+{
+  "name": "pricy-devcontainer",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "features": {},
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "React Dev Server",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "postCreateCommand": "yarn install",
+  "postStartCommand": "nohup yarn dev:start > /workspaces/.devcontainer/dev-server.log 2>&1 &",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "dsznajder.es7-react-js-snippets",
+        "flowtype.flow-for-vscode",
+        "ms-vscode.vscode-typescript-next"
+      ]
+    }
+  }
+}
