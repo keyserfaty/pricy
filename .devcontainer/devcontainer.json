@@ -1,0 +1,26 @@
+{
+  "name": "pricy-devcontainer",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "features": {},
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "Development server",
+      "onAutoForward": "openPreview",
+      "visibility": "public"
+    }
+  },
+  "postCreateCommand": "yarn install",
+  "postStartCommand": "nohup yarn dev:start > /workspaces/.devcontainer/dev-server.log 2>&1 & sleep 10 && gh codespace ports visibility 3000:public 2>/dev/null || true",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "dsznajder.es7-react-js-snippets",
+        "flowtype.flow-for-vscode",
+        "ms-vscode.vscode-typescript-next"
+      ]
+    }
+  }
+}
