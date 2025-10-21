@@ -48,7 +48,7 @@ const PriceSingle = props => {
   }
 
   return (
-    <tr key={id} className='animated fadeIn' style={{ animationDuration: '0.5s' }}>
+    <tr key={id}>
       { item.map((each, index) => {
         if (each.instalments === 0) {
           return (
